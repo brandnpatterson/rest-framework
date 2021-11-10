@@ -6,7 +6,7 @@ from django.db.models import (
     DateField,
     ManyToManyField,
     Model,
-    TextField
+    TextField,
 )
 from django_extensions.db.fields import AutoSlugField
 

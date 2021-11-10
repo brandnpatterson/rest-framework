@@ -8,7 +8,7 @@ from django.db.models import (
     ManyToManyField,
     Model,
     TextField,
-    URLField
+    URLField,
 )
 from django_extensions.db.fields import AutoSlugField
 
