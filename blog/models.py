@@ -1,13 +1,15 @@
 from datetime import date
+
 from django.db.models import (
     AutoField,
     CharField,
     DateField,
     ManyToManyField,
     Model,
-    TextField,
+    TextField
 )
 from django_extensions.db.fields import AutoSlugField
+
 from organizer.models import Startup, Tag
 
 
