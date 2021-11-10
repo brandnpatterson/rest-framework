@@ -1,19 +1,25 @@
 from django.db.models import (
+    AutoField,
+    CASCADE,
     CharField,
     DateField,
+    EmailField,
+    ForeignKey,
     ManyToManyField,
     Model,
-    SlugField,
     TextField,
+    URLField,
 )
+from django_extensions.db.fields import AutoSlugField
 
 
 class Tag(Model):
+    id = AutoField(primary_key=True)
     name = CharField(max_length=50, unique=True)
-    slug = SlugField(
+    slug = AutoSlugField(
         max_length=50,
-        unique=True,
-        help_text="A lable for URL config.",
+        help_text="A label for URL config.",
+        populate_from=["name"],
     )
 
     class Meta:
@@ -24,11 +30,12 @@ class Tag(Model):
 
 
 class Startup(Model):
+    id = AutoField(primary_key=True)
     name = CharField(max_length=50, db_index=True)
-    slug = SlugField(
+    slug = AutoSlugField(
         max_length=50,
-        unique=True,
         help_text="A label for URL config.",
+        populate_from=["name"],
     )
     description = TextField()
     founded_date = DateField("date founded")
@@ -45,8 +52,13 @@ class Startup(Model):
 
 
 class NewsLink(Model):
+    id = AutoField(primary_key=True)
     title = CharField(max_length=50)
-    slug = SlugField(max_length=50)
+    slug = AutoSlugField(
+        max_length=50,
+        help_text="A label for URL config.",
+        populate_from=["title"],
+    )
     pub_date = DateField("date published")
     link = URLField(max_length=250)
     startup = ForeignKey(Startup, on_delete=CASCADE)

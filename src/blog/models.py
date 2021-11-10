@@ -1,21 +1,23 @@
 from datetime import date
 from django.db.models import (
+    AutoField,
     CharField,
     DateField,
     ManyToManyField,
     Model,
-    SlugField,
     TextField,
 )
+from django_extensions.db.fields import AutoSlugField
 from organizer.models import Startup, Tag
 
 
 class Post(Model):
+    id = AutoField(primary_key=True)
     title = CharField(max_length=100)
-    slug = SlugField(
-        max_length=100,
+    slug = AutoSlugField(
+        max_length=50,
         help_text="A label for URL config.",
-        unique_for_month="pub_date",
+        populate_from=["name"],
     )
     text = TextField()
     pub_date = DateField(
