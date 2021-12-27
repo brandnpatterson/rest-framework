@@ -14,6 +14,8 @@ import os
 
 import environ
 
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
+
 env = environ.Env()
 
 BASE_DIR = os.path.dirname(
