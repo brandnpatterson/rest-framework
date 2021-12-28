@@ -17,7 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 
 from blog.urls import urlpatterns as blog_urlpatterns
-from organizer.urls import urlpatterns as organizer_urlpatterns
+from organizer.urls import (
+    urlpatterns as organizer_urlpatterns,
+)
 
 api_urls = blog_urlpatterns + organizer_urlpatterns
 
