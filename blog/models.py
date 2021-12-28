@@ -19,7 +19,7 @@ class Post(Model):
     slug = AutoSlugField(
         max_length=50,
         help_text="A label for URL config.",
-        populate_from=["name"],
+        populate_from=["title"],
     )
     text = TextField()
     pub_date = DateField(
