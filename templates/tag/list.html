@@ -1,11 +1,11 @@
-{% extends parent_template|default"tag/base.html" %}
+{% extends parent_template|default:"tag/base.html" %}
 
 {% block content %}
 <h1>Tag List</h1>
 <ul>
   {% for tag in tag_list %}
     <li>
-      <a href=""> {{ tag.name|title }} </a>
+      <a href="{% url "tag_detail" slug=tag.slug %}">{{ tag.name|title }}</a>
     </li>
   {% empty %}
     <li><em>There are currently no Tags available.</em></li>

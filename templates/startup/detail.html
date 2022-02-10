@@ -1,4 +1,4 @@
-{% extends parent_template|default"startup/base.html" %}
+{% extends parent_template|default:"startup/base.html" %}
 
 {% block title %}
   {{ block.super }} - {{ startup.name|title }}
@@ -8,7 +8,7 @@
 <h2>{{ startup.name }}</h2>
 <dl>
   <dt>Date Found</dt>
-  <dd>{{ startup.founded_date|date"F jS, Y" }}</dd>
+  <dd>{{ startup.founded_date|date:"F jS, Y" }}</dd>
   <dt>Website</dt>
   <dd>{{ startup.website|urlize }}</dd>
   <dt>Contact</dt>

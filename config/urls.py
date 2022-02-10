@@ -16,14 +16,20 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from blog.urls import urlpatterns as blog_urlpatterns
-from organizer.urls import (
-    urlpatterns as organizer_urlpatterns,
+from blog import urls as blog_urls
+from blog.api_urls import (
+    urlpatterns as blog_api_urls,
+)
+from organizer import urls as organizer_urls
+from organizer.api_urls import (
+    urlpatterns as organizer_api_urls,
 )
 
-api_urls = blog_urlpatterns + organizer_urlpatterns
+api_urls = blog_api_urls + organizer_api_urls
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/v1/", include(api_urls)),
+    path("", include(organizer_urls)),
+    path("blog/", include(blog_urls)),
 ]

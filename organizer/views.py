@@ -1,63 +1,22 @@
-from django.shortcuts import get_object_or_404
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-)
-from rest_framework.response import Response
-from rest_framework.views import APIView
-
-from .serializers import (
-    NewsLinkSerializer,
-    StartupSerializer,
-    TagSerializer,
-)
-from .models import NewsLink, Startup, Tag
+from django.views.generic import DetailView, ListView
+from .models import Startup, Tag
 
 
-class TagAPIDetail(RetrieveAPIView):
+class TagList(ListView):
     queryset = Tag.objects.all()
-    serializer_class = TagSerializer
-    lookup_field = "slug"
+    template_name = "tag/list.html"
 
 
-class TagAPIList(ListAPIView):
+class TagDetail(DetailView):
     queryset = Tag.objects.all()
-    serializer_class = TagSerializer
+    template_name = "tag/detail.html"
 
 
-class StartupAPIDetail(RetrieveAPIView):
+class StartupList(ListView):
     queryset = Startup.objects.all()
-    serializer_class = StartupSerializer
-    lookup_field = "slug"
+    template_name = "startup/list.html"
 
 
-class StartupAPIList(ListAPIView):
+class StartupDetail(DetailView):
     queryset = Startup.objects.all()
-    serializer_class = StartupSerializer
-
-
-class NewsLinkAPIDetail(RetrieveAPIView):
-    queryset = NewsLink.objects.all()
-    serializer_class = NewsLinkSerializer
-
-    def get_object(self):
-        startup_slug = self.kwargs.get("startup_slug")
-        newslink_slug = self.kwargs.get("startup_slug")
-
-        queryset = self.filter_queryset(self.get_queryset())
-
-        newslink = get_object_or_404(
-            queryset,
-            slug=newslink_slug,
-            startup_slug=startup_slug,
-        )
-        self.check_object_permissions(
-            self.request, newslink
-        )
-
-        return newslink
-
-
-class NewsLinkAPIList(ListAPIView):
-    queryset = NewsLink.objects.all()
-    serializer_class = NewsLinkSerializer
+    template_name = "startup/detail.html"

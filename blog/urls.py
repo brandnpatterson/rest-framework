@@ -1,14 +1,15 @@
 from django.urls import path
-
-from .views import PostAPIDetail, PostAPIList
+from .views import PostDetail, PostList
 
 urlpatterns = [
     path(
-        "blog/", PostAPIList.as_view(), name="api-post-list"
+        "",
+        PostList.as_view(),
+        name="post_list",
     ),
     path(
-        "blog/<int:year>/<int:month>/<str:slug>/",
-        PostAPIDetail.as_view(),
-        name="api-post-detail",
+        "<int:year>/<int:month>/<str:slug>",
+        PostDetail.as_view(),
+        name="post_detail",
     ),
 ]

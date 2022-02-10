@@ -1,36 +1,21 @@
 from django.shortcuts import get_object_or_404
-from rest_framework.generics import (
-    ListAPIView,
-    RetrieveAPIView,
-)
-
+from django.views.generic import ListView, View
 from .models import Post
-from .serializers import PostSerializer
 
 
-class PostAPIList(ListAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
+class PostList(ListView):
+    model = Post
+    template_name = "post/list.html"
 
 
-class PostAPIDetail(RetrieveAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-    def get_object(self):
-        year = self.kwargs.get("year")
-        month = self.kwargs.get("month")
-        slug = self.kwargs.get("slug")
-
-        queryset = self.filter_queryset(self.get_queryset())
-
+class PostDetail(View):
+    def get(self, request, year, month, slug):
         post = get_object_or_404(
-            queryset,
-            pub_date__year=year,
-            pub_date__month=month,
+            Post,
+            post_date__year=year,
+            post_date__month=month,
             slug=slug,
         )
+        context = {"post", post}
 
-        self.check_object_permissions(self.request, post)
-
-        return post
+        return render(request, "post/detail.html", context)

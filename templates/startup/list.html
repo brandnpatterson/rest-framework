@@ -1,11 +1,11 @@
-{% extends parent_template|default"startup/base.html" %}
+{% extends parent_template|default:"startup/base.html" %}
 
 {% block content %}
 <h2>Startup List</h2>
 <ul>
   {% for startup in startup_list %}
     <li>
-      <a href="">{{ startup.name }}</a>
+      <a href="{% url "startup_detail" slug=startup.slug %}">{{ startup.name }}</a>
     </li>
   {% empty %}
     <li><em>No Startups Available</em></li>
