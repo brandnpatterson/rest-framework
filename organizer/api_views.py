@@ -1,11 +1,12 @@
-from django.shortcuts import get_object_or_404
 from rest_framework.generics import (
     ListAPIView,
+    ListCreateAPIView,
     RetrieveAPIView,
+    RetrieveUpdateDestroyAPIView,
 )
 from rest_framework.response import Response
+from rest_framework.status import HTTP_204_NO_CONTENT
 from rest_framework.views import APIView
-
 from .serializers import (
     NewsLinkSerializer,
     StartupSerializer,
@@ -14,13 +15,13 @@ from .serializers import (
 from .models import NewsLink, Startup, Tag
 
 
-class TagAPIDetail(RetrieveAPIView):
+class TagAPIDetail(RetrieveUpdateDestroyAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     lookup_field = "slug"
 
 
-class TagAPIList(ListAPIView):
+class TagAPIList(ListCreateAPIView):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
 
