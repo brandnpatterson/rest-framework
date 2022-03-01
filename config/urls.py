@@ -20,7 +20,7 @@ from blog import urls as blog_urls
 from blog.api_urls import (
     urlpatterns as blog_api_urls,
 )
-from organizer import routers as organizer_urls
+from organizer import urls as organizer_urls
 from organizer.routers import (
     urlpatterns as organizer_api_urls,
 )

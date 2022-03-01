@@ -16,6 +16,6 @@ class PostDetail(View):
             pub_date__month=month,
             slug=slug,
         )
-        context = { "post": post }
+        context = {"post": post}
 
         return render(request, "post/detail.html", context)

@@ -10,25 +10,55 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('organizer', '0001_initial'),
+        ("organizer", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False)),
-                ('title', models.CharField(max_length=100)),
-                ('slug', models.SlugField(help_text='A label for URL config.', max_length=100, unique_for_month='pub_date')),
-                ('text', models.TextField()),
-                ('pub_date', models.DateField(default=datetime.date.today, verbose_name='date published')),
-                ('startup', models.ManyToManyField(related_name='blog_posts', to='organizer.Startup')),
-                ('tags', models.ManyToManyField(related_name='blog_posts', to='organizer.Tag')),
+                (
+                    "id",
+                    models.AutoField(
+                        primary_key=True, serialize=False
+                    ),
+                ),
+                ("title", models.CharField(max_length=100)),
+                (
+                    "slug",
+                    models.SlugField(
+                        help_text="A label for URL config.",
+                        max_length=100,
+                        unique_for_month="pub_date",
+                    ),
+                ),
+                ("text", models.TextField()),
+                (
+                    "pub_date",
+                    models.DateField(
+                        default=datetime.date.today,
+                        verbose_name="date published",
+                    ),
+                ),
+                (
+                    "startup",
+                    models.ManyToManyField(
+                        related_name="blog_posts",
+                        to="organizer.Startup",
+                    ),
+                ),
+                (
+                    "tags",
+                    models.ManyToManyField(
+                        related_name="blog_posts",
+                        to="organizer.Tag",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'blog post',
-                'ordering': ['-pub_date', 'title'],
-                'get_latest_by': 'pub_date',
+                "verbose_name": "blog post",
+                "ordering": ["-pub_date", "title"],
+                "get_latest_by": "pub_date",
             },
         ),
     ]

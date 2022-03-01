@@ -41,12 +41,11 @@ class Post(Model):
         return f"{self.title} on {date_str}"
 
     def get_absolute_url(self):
-        return reverse("post_detail", 
+        return reverse(
+            "post_detail",
             kwargs={
                 "year": self.pub_date.year,
                 "month": self.pub_date.month,
                 "slug": self.slug,
-            }
+            },
         )
-    
-    

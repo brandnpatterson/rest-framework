@@ -1,6 +1,11 @@
 from django.urls import path
 from rest_framework.routers import SimpleRouter
-from .viewsets import NewsLinkViewSet, StartupViewSet, TagViewSet
+from .viewsets import (
+    NewsLinkViewSet,
+    StartupViewSet,
+    TagViewSet,
+)
+
 
 class NewsLinkRouter(SimpleRouter):
     """Override the SimpleRouter for articles

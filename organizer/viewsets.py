@@ -4,12 +4,17 @@ from rest_framework.response import Response
 from rest_framework.status import (
     HTTP_201_CREATED,
     HTTP_204_NO_CONTENT,
-    HTTP_400_BAD_REQUEST
+    HTTP_400_BAD_REQUEST,
 )
 from rest_framework.viewsets import ModelViewSet
 
 from .models import NewsLink, Startup, Tag
-from .serializers import NewsLinkSerializer, StartupSerializer, TagSerializer
+from .serializers import (
+    NewsLinkSerializer,
+    StartupSerializer,
+    TagSerializer,
+)
+
 
 class TagViewSet(ModelViewSet):
     lookup_field = "slug"
@@ -29,7 +34,7 @@ class StartupViewSet(ModelViewSet):
             s_tag = TagSerializer(
                 startup.tags,
                 many=True,
-                context={"request": request}
+                context={"request": request},
             )
             return Response(s_tag.data)
         tag_slug = request.data.get("slug")

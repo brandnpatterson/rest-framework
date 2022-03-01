@@ -3,7 +3,7 @@ from rest_framework.serializers import (
     HyperlinkedModelSerializer,
     HyperlinkedRelatedField,
     ModelSerializer,
-    SerializerMethodField
+    SerializerMethodField,
 )
 
 from .models import NewsLink, Startup, Tag
@@ -55,7 +55,7 @@ class NewsLinkSerializer(ModelSerializer):
             "api-newslink-detail",
             kwargs={
                 "startup_slug": newslink.startup.slug,
-                "newslink_slug": newslink.slug
+                "newslink_slug": newslink.slug,
             },
-            request=self.context["request"]
+            request=self.context["request"],
         )

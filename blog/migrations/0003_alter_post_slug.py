@@ -7,13 +7,18 @@ import django_extensions.db.fields
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('blog', '0002_alter_post_slug'),
+        ("blog", "0002_alter_post_slug"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='post',
-            name='slug',
-            field=django_extensions.db.fields.AutoSlugField(blank=True, editable=False, help_text='A label for URL config.', populate_from=['title']),
+            model_name="post",
+            name="slug",
+            field=django_extensions.db.fields.AutoSlugField(
+                blank=True,
+                editable=False,
+                help_text="A label for URL config.",
+                populate_from=["title"],
+            ),
         ),
     ]
